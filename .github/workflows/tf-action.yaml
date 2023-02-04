@@ -1,21 +1,24 @@
 name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions"
- 
+permissions:
+  # packages: write
+  contents: read
+  id-token: write
 on:
   workflow_dispatch
 
 jobs: 
   terraform:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-      id-token: write
+
     name: Terraform
     env:
       environment: staging 
       AWS_ACCESS_KEY_ID: ${{ secrets.CLIENT_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.CLIENT_SECRET }}
       AWS_DEFAULT_REGION: 'us-east-1'
+    
+    
+    
     steps:
     
     
