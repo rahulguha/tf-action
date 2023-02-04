@@ -7,7 +7,8 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     name: Terraform
-    environment: staging 
+    env:
+      environment: staging 
     steps:
     
     
@@ -34,9 +35,9 @@ jobs:
       working-directory: . # Use your environment folder
       run: |
         terraform init
-        terraform plan -out = demo-plan
-        terraform apply demo-plan --auto-approve
-        # terraform workspace new ${{ env.environment }}
-        # terraform workspace select ${{ env.environment }} && terraform plan -out = demo-plan
-        # terraform workspace select ${{ env.environment }} && terraform apply demo-plan -auto-approve
+        # terraform plan -out = demo-plan
+        # terraform apply demo-plan --auto-approve
+        terraform workspace new ${{ env.environment }}
+        terraform workspace select ${{ env.environment }} && terraform plan 
+        terraform workspace select ${{ env.environment }} && terraform apply -auto-approve
       shell: bash
