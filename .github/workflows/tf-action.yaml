@@ -1,6 +1,5 @@
 name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions"
 permissions:
-  # packages: write
   contents: read
   id-token: write
 on:
@@ -13,9 +12,7 @@ jobs:
     name: Terraform
     env:
       environment: staging 
-      AWS_ACCESS_KEY_ID: ${{ secrets.CLIENT_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.CLIENT_SECRET }}
-      AWS_DEFAULT_REGION: 'us-east-1'
+
     
     
     
@@ -27,7 +24,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@master
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.CLIENT_ID }} 
         aws-secret-access-key: ${{ secrets.CLIENT_SECRET}} 
@@ -50,4 +47,5 @@ jobs:
         terraform workspace new ${{ env.environment }}
         terraform workspace select ${{ env.environment }} && terraform plan 
         terraform workspace select ${{ env.environment }} && terraform apply -auto-approve
+        terraform workspace select ${{ env.environment }} && terraform destroy -auto-approve
       shell: bash
