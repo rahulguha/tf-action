@@ -9,6 +9,9 @@ jobs:
     name: Terraform
     env:
       environment: staging 
+      AWS_ACCESS_KEY_ID: ${{ secrets.CLIENT_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.CLIENT_SECRET }}
+      AWS_DEFAULT_REGION: 'us-east-1'
     steps:
     
     
