@@ -35,6 +35,7 @@ jobs:
       run: 
         terraform init
         terraform plan
-        # terraform workspace new ${{ env.environment }}
-        # terraform workspace select ${{ env.environment }} && terraform plan
+        terraform workspace new ${{ env.environment }}
+        terraform workspace select ${{ env.environment }} && terraform plan
         # terraform workspace select ${{ env.environment }} && terraform apply -auto-approve
+      shell: bash
