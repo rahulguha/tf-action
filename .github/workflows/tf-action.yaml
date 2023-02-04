@@ -32,7 +32,7 @@ jobs:
 
     - name: Terraform Workflow
       working-directory: . # Use your environment folder
-      run: 
+      run: |
         terraform init
         terraform plan
         terraform workspace new ${{ env.environment }}
