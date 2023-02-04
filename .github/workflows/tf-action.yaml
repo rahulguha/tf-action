@@ -19,12 +19,12 @@ jobs:
     - name: checkout 
       uses: actions/checkout@v2
       
-    # - name: Configure AWS Credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.CLIENT_ID }} 
-    #     aws-secret-access-key: ${{ secrets.CLIENT_SECRET}} 
-    #     aws-region: us-east-1
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.CLIENT_ID }} 
+        aws-secret-access-key: ${{ secrets.CLIENT_SECRET}} 
+        aws-region: us-east-1
 
 
     - name: Setup Terraform
