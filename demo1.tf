@@ -1,5 +1,14 @@
 
 
+# terraform {
+#   required_providers {
+#     aws = {
+#       source  = "hashicorp/aws"
+#       version = "~> 4.0"
+#     }
+#   }
+# }
+
 terraform {
   required_providers {
     aws = {
@@ -7,12 +16,18 @@ terraform {
       version = "~> 4.0"
     }
   }
+  backend "s3" {
+    bucket         = "tf-action"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+    # dynamodb_table = "<your_dynamo_dbtable_name>"
+  }
 }
 
 # Configure the AWS Provider
 provider "aws" {
     region = "us-east-1"
-    
+
 
     # profile = "terraform"
 }
